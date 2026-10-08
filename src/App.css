@@ -1,0 +1,289 @@
+/* App Layout & Component Specific Classes */
+
+/* Core Shell Page Layout */
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+}
+
+.dashboard-container {
+  display: flex;
+  flex: 1;
+  width: 100%;
+}
+
+.dashboard-main {
+  flex: 1;
+  padding: 32px;
+  overflow-y: auto;
+  padding-bottom: 90px; /* space for mobile bottom nav if visible */
+}
+
+@media (min-width: 1025px) {
+  .dashboard-main {
+    margin-right: 260px; /* width of sidebar */
+    padding-bottom: 32px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .dashboard-main {
+    padding: 16px;
+    padding-bottom: 100px;
+  }
+}
+
+/* Home / Marketing Hero */
+.hero-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 60px 0;
+  gap: 40px;
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    flex-direction: column;
+    text-align: center;
+    padding: 40px 0;
+  }
+}
+
+.hero-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.hero-title {
+  font-size: var(--text-3xl);
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.hero-title span {
+  color: var(--color-secondary);
+}
+
+.hero-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.hero-image img {
+  max-width: 100%;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  border: 4px solid var(--color-white);
+}
+
+/* Live Session Screen Grid */
+.live-session-layout {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  height: calc(100vh - 64px);
+  overflow: hidden;
+}
+
+@media (max-width: 1024px) {
+  .live-session-layout {
+    grid-template-columns: 1fr;
+    grid-template-rows: 56.25vw 1fr; /* Aspect ratio responsive height for video */
+    height: calc(100vh - 64px - 60px); /* Adjust for navbar and mobile bottom nav */
+  }
+}
+
+.video-container {
+  position: relative;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.main-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Watermark Overlay Canvas */
+.watermark-overlay-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* Let clicks pass through to video controls */
+  z-index: 10;
+}
+
+/* Interactive Overlay inside Live Stream */
+.quiz-overlay {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  box-shadow: var(--shadow-lg);
+  max-width: 300px;
+  z-index: 20;
+  backdrop-filter: blur(8px);
+}
+
+/* Chat Layout inside live session */
+.live-chat-sidebar {
+  border-left: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  background: var(--color-white);
+  height: 100%;
+}
+
+.chat-header {
+  padding: 16px;
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.chat-messages {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.chat-message-bubble {
+  background: var(--color-bg-light);
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  border-top-right-radius: 2px;
+  font-size: var(--text-base);
+  max-width: 85%;
+  align-self: flex-start;
+}
+
+.chat-message-bubble.me {
+  background: rgba(138, 92, 246, 0.1);
+  border-radius: var(--radius-md);
+  border-top-left-radius: 2px;
+  align-self: flex-end;
+  color: var(--color-text-dark);
+}
+
+.chat-sender {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  color: var(--color-secondary);
+  margin-bottom: 2px;
+  display: block;
+}
+
+.chat-input-area {
+  padding: 12px;
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  gap: 8px;
+}
+
+.chat-input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  outline: none;
+}
+.chat-input:focus {
+  border-color: var(--color-secondary);
+}
+
+/* Homework Page UI */
+.file-upload-zone {
+  border: 3px dashed var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: var(--color-bg-light);
+  transition: var(--transition-normal);
+}
+.file-upload-zone:hover {
+  border-color: var(--color-secondary);
+  background: rgba(138, 92, 246, 0.02);
+}
+
+.progress-bar-container {
+  width: 100%;
+  height: 8px;
+  background: var(--color-border);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: 12px;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: var(--gradient-accent);
+  transition: width 0.1s ease;
+}
+
+/* Dashboard Switcher overlay */
+.role-switcher-debug {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 9999;
+  background: var(--color-dark-bg);
+  color: var(--color-white);
+  padding: 12px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.role-switcher-title {
+  font-size: var(--text-xs);
+  font-weight: bold;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 4px;
+}
+
+.role-switcher-btn {
+  padding: 4px 8px;
+  font-size: var(--text-sm);
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--color-white);
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  text-align: center;
+  transition: var(--transition-fast);
+}
+.role-switcher-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+.role-switcher-btn.active {
+  background: var(--color-secondary);
+  font-weight: bold;
+}
